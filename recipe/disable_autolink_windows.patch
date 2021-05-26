@@ -1,0 +1,14 @@
+diff --git a/include/GL/freeglut_std.h b/include/GL/freeglut_std.h
+index a658c7c5..a8ea66c9 100644
+--- a/include/GL/freeglut_std.h
++++ b/include/GL/freeglut_std.h
+@@ -48,7 +48,7 @@
+  */
+ #   ifndef FREEGLUT_LIB_PRAGMAS
+ #       if ( defined(_MSC_VER) || defined(__WATCOMC__) ) && !defined(_WIN32_WCE)
+-#           define FREEGLUT_LIB_PRAGMAS 1
++#           define FREEGLUT_LIB_PRAGMAS 0
+ #       else
+ #           define FREEGLUT_LIB_PRAGMAS 0
+ #       endif
+ 

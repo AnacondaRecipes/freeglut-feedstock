@@ -8,6 +8,8 @@ source:
   fn: freeglut-{{ version }}.tar.bz2
   url: http://sourceforge.net/projects/freeglut/files/freeglut/{{ version }}/freeglut-{{ version }}.tar.gz
   md5: cd5c670c1086358598a6d4a9d166949d
+  patches:
+    - disable_autolink_windows.patch
 
 build:
   number: 5
