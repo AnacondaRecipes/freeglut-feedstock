@@ -15,10 +15,13 @@ build:
   # Maybe someday we'll build with X11 on osx:
   # https://github.com/Homebrew/homebrew-core/blob/master/Formula/freeglut.rb
   skip: true                      # [osx]
+  ignore_run_exports:
+    - libglu
 
 requirements:
   build:
     - cmake
+    - make                              # [linux]
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - {{ cdt('libxcb') }}               # [linux]
@@ -30,7 +33,8 @@ requirements:
     - {{ cdt('mesa-libgl-devel') }}     # [linux]
     - {{ cdt('xorg-x11-proto-devel') }} # [linux]
   host:
-    - libglu                            # [linux]
+    - libxcb                            # [linux]
+    - libglu
 
 test:
   commands:
