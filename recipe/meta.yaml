@@ -19,6 +19,7 @@ build:
 requirements:
   build:
     - cmake
+    - make                              # [linux]
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - {{ cdt('libxcb') }}               # [linux]
@@ -56,6 +57,7 @@ about:
   license_family: MIT
   license_file: COPYING
   summary: A GUI based on OpenGL.
+  doc_url: http://freeglut.sourceforge.net/docs/api.php
 
 extra:
   recipe-maintainers:
