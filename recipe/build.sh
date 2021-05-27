@@ -6,7 +6,7 @@ if [[ ${HOST} =~ .*linux.* ]]; then
     CMAKE_PLATFORM_FLAGS+=(-DCMAKE_TOOLCHAIN_FILE="${RECIPE_DIR}/cross-linux.cmake")
 fi
 
-export LDFLAGS="${LDFLAGS} -Wl,--allow-multiple-definition"
+export LDFLAGS="${LDFLAGS} -Wl,--allow-multiple-definition"  # correct problem with multiple of linked resoureces
 
 mkdir build && cd build
 cmake \
