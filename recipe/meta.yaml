@@ -1,4 +1,4 @@
-{% set version = "3.0.0" %}
+{% set version = "3.2.2" %}
 
 package:
   name: freeglut
@@ -7,7 +7,7 @@ package:
 source:
   fn: freeglut-{{ version }}.tar.bz2
   url: http://sourceforge.net/projects/freeglut/files/freeglut/{{ version }}/freeglut-{{ version }}.tar.gz
-  md5: 90c3ca4dd9d51cf32276bc5344ec9754
+  md5: 485c1976165315fc42c0b0a1802816d9
 
 build:
   number: 5
