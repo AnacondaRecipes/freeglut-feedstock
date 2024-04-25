@@ -1,16 +1,14 @@
-{% set version = "3.2.2" %}
+{% set version = "3.4.0" %}
 
 package:
   name: freeglut
   version: {{ version }}
 
 source:
-  fn: freeglut-{{ version }}.tar.bz2
   url: http://sourceforge.net/projects/freeglut/files/freeglut/{{ version }}/freeglut-{{ version }}.tar.gz
-  sha256: c5944a082df0bba96b5756dddb1f75d0cd72ce27b5395c6c1dde85c2ff297a50
+  sha256: 3c0bcb915d9b180a97edaebd011b7a1de54583a838644dcd42bb0ea0c6f3eaec
   patches:
     - disable_autolink_windows.patch
-    - 96.patch
 
 build:
   number: 0
@@ -27,8 +25,6 @@ requirements:
     - cmake
     - make                               # [linux]
     - {{ cdt('mesa-libgl-devel') }}      # [linux]
-    - {{ cdt('xorg-x11-proto-devel') }}  # [linux]
-    - {{ cdt('libxxf86vm-devel') }}      # [linux]
   host:
     - libglu                             # [linux]
     - libxcb                             # [linux]
@@ -37,6 +33,9 @@ requirements:
     - xorg-libxext                       # [linux]
     - xorg-libxfixes                     # [linux]
     - xorg-libxi                         # [linux]
+    - xorg-libxxf86vm                    # [linux]
+    - xorg-xf86vidmodeproto              # [linux]
+    - xorg-xproto                        # [linux]
   run:
     - libxcb                             # [linux]
     - xorg-libx11                        # [linux]
