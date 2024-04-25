@@ -26,24 +26,19 @@ requirements:
     - {{ compiler('cxx') }}
     - cmake
     - make                               # [linux]
-    - {{ cdt('mesa-libgl-devel') }}      # [linux]
-    - {{ cdt('xorg-x11-proto-devel') }}  # [linux]
-    - {{ cdt('libxxf86vm-devel') }}      # [linux]
+    - {{ cdt('libxcb') }}               # [linux]
+    - {{ cdt('libxi-devel') }}          # [linux]
+    - {{ cdt('libx11-devel') }}         # [linux]
+    - {{ cdt('libxau-devel') }}         # [linux]
+    - {{ cdt('libxext-devel') }}        # [linux]
+    - {{ cdt('libxfixes-devel') }}      # [linux]
+    - {{ cdt('mesa-libgl-devel') }}     # [linux]
+    - {{ cdt('xorg-x11-proto-devel') }} # [linux]
   host:
     - libglu                             # [linux]
     - libxcb                             # [linux]
-    - xorg-libx11                        # [linux]
-    - xorg-libxau                        # [linux]
-    - xorg-libxext                       # [linux]
-    - xorg-libxfixes                     # [linux]
-    - xorg-libxi                         # [linux]
   run:
     - libxcb                             # [linux]
-    - xorg-libx11                        # [linux]
-    - xorg-libxau                        # [linux]
-    - xorg-libxext                       # [linux]
-    - xorg-libxfixes                     # [linux]
-    - xorg-libxi                         # [linux]
 
 test:
   files:
@@ -53,21 +48,16 @@ test:
     - {{ compiler('c') }}
     - cmake
     - ninja
-    - {{ cdt('mesa-libgl-devel') }}      # [linux]
-    - {{ cdt('xorg-x11-proto-devel') }}  # [linux]
-    - {{ cdt('libxxf86vm-devel') }}      # [linux]
     - libglu                             # [linux]
     - libxcb                             # [linux]
-    - xorg-libx11                        # [linux]
-    - xorg-libxau                        # [linux]
-    - xorg-libxext                       # [linux]
-    - xorg-libxfixes                     # [linux]
-    - xorg-libxi                         # [linux]
-    - {{ cdt('mesa-dri-drivers') }}      # [linux]
-    - {{ cdt('libselinux') }}            # [linux]
-    - {{ cdt('libxdamage') }}            # [linux]
-    - {{ cdt('libxext') }}               # [linux]
-    - xorg-libxfixes                     # [linux]
+    - {{ cdt('libxcb') }}               # [linux]
+    - {{ cdt('libxi-devel') }}          # [linux]
+    - {{ cdt('libx11-devel') }}         # [linux]
+    - {{ cdt('libxau-devel') }}         # [linux]
+    - {{ cdt('libxext-devel') }}        # [linux]
+    - {{ cdt('libxfixes-devel') }}      # [linux]
+    - {{ cdt('mesa-libgl-devel') }}     # [linux]
+    - {{ cdt('xorg-x11-proto-devel') }} # [linux]
 
   commands:
     # Test includes.
