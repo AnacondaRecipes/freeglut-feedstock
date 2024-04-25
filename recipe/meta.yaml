@@ -1,4 +1,4 @@
-{% set version = "3.0.0" %}
+{% set version = "3.2.2" %}
 
 package:
   name: freeglut
@@ -7,40 +7,76 @@ package:
 source:
   fn: freeglut-{{ version }}.tar.bz2
   url: http://sourceforge.net/projects/freeglut/files/freeglut/{{ version }}/freeglut-{{ version }}.tar.gz
-  md5: 90c3ca4dd9d51cf32276bc5344ec9754
+  sha256: c5944a082df0bba96b5756dddb1f75d0cd72ce27b5395c6c1dde85c2ff297a50
+  patches:
+    - disable_autolink_windows.patch
+    - 96.patch
 
 build:
-  number: 5
-  # https://github.com/dcnieho/FreeGLUT/issues/27
-  # Maybe someday we'll build with X11 on osx:
-  # https://github.com/Homebrew/homebrew-core/blob/master/Formula/freeglut.rb
-  skip: true                      # [osx]
+  number: 0
+  skip: true  # [osx]
+  run_exports:
+    # https://abi-laboratory.pro/index.php?view=timeline&l=freeglut
+    # very good backwards compatibility
+    - {{ pin_subpackage("freeglut", max_pin="x") }}
 
 requirements:
   build:
-    - cmake
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
-    - {{ cdt('libxcb') }}               # [linux]
-    - {{ cdt('libxi-devel') }}          # [linux]
-    - {{ cdt('libx11-devel') }}         # [linux]
-    - {{ cdt('libxau-devel') }}         # [linux]
-    - {{ cdt('libxext-devel') }}        # [linux]
-    - {{ cdt('libxfixes-devel') }}      # [linux]
-    - {{ cdt('mesa-libgl-devel') }}     # [linux]
-    - {{ cdt('xorg-x11-proto-devel') }} # [linux]
+    - cmake
+    - make                               # [linux]
+    - {{ cdt('mesa-libgl-devel') }}      # [linux]
+    - {{ cdt('xorg-x11-proto-devel') }}  # [linux]
+    - {{ cdt('libxxf86vm-devel') }}      # [linux]
   host:
-    - libglu                            # [linux]
+    - libglu                             # [linux]
+    - libxcb                             # [linux]
+    - xorg-libx11                        # [linux]
+    - xorg-libxau                        # [linux]
+    - xorg-libxext                       # [linux]
+    - xorg-libxfixes                     # [linux]
+    - xorg-libxi                         # [linux]
+  run:
+    - libxcb                             # [linux]
+    - xorg-libx11                        # [linux]
+    - xorg-libxau                        # [linux]
+    - xorg-libxext                       # [linux]
+    - xorg-libxfixes                     # [linux]
+    - xorg-libxi                         # [linux]
 
 test:
+  files:
+    - test
+
+  requires:
+    - {{ compiler('c') }}
+    - cmake
+    - ninja
+    - {{ cdt('mesa-libgl-devel') }}      # [linux]
+    - {{ cdt('xorg-x11-proto-devel') }}  # [linux]
+    - {{ cdt('libxxf86vm-devel') }}      # [linux]
+    - libglu                             # [linux]
+    - libxcb                             # [linux]
+    - xorg-libx11                        # [linux]
+    - xorg-libxau                        # [linux]
+    - xorg-libxext                       # [linux]
+    - xorg-libxfixes                     # [linux]
+    - xorg-libxi                         # [linux]
+    - {{ cdt('mesa-dri-drivers') }}      # [linux]
+    - {{ cdt('libselinux') }}            # [linux]
+    - {{ cdt('libxdamage') }}            # [linux]
+    - {{ cdt('libxext') }}               # [linux]
+    - xorg-libxfixes                     # [linux]
+
   commands:
     # Test includes.
     - test -d "${PREFIX}/include/GL"  # [linux]
 
       # Test libraries.
-    - test -f "${PREFIX}/lib/libglut.a"   # [linux]
-    - test -f "${PREFIX}/lib/libglut.so"  # [linux]
-    - ldd "${PREFIX}/lib/libglut.so"      # [linux]
+    - test ! -f "${PREFIX}/lib/libglut.a"   # [linux]
+    - test -f "${PREFIX}/lib/libglut.so"    # [linux]
+    - ldd "${PREFIX}/lib/libglut.so"        # [linux]
 
     # Test Windows includes and libraries.
     - if not exist %LIBRARY_INC%\\GL\\freeglut.h     exit 1   # [win]
@@ -61,3 +97,4 @@ extra:
   recipe-maintainers:
     - jakirkham
     - shadowwalkersb
+    - wolfv
