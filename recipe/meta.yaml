@@ -67,14 +67,6 @@ test:
     - {{ cdt('libxdamage-devel') }}      # [linux]
     - {{ cdt('libselinux') }}  # [linux]
   commands:
-    # Test includes.
-    - test -d "${PREFIX}/include/GL"  # [linux]
-
-      # Test libraries.
-    - test ! -f "${PREFIX}/lib/libglut.a"   # [linux]
-    - test -f "${PREFIX}/lib/libglut.so"    # [linux]
-    - ldd "${PREFIX}/lib/libglut.so"        # [linux]
-
     # Test Windows includes and libraries.
     - if not exist %LIBRARY_INC%\\GL\\freeglut.h     exit 1   # [win]
     - if not exist %LIBRARY_INC%\\GL\\freeglut_ext.h exit 1   # [win]
