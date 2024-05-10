@@ -2,14 +2,12 @@
 
 set -euxo pipefail
 
-export LDFLAGS="${LDFLAGS} -Wl,-rpath-link,${PREFIX}/lib"
-
 mkdir build && cd build
 cmake -LAH -G "Ninja" \
-    ${CMAKE_ARGS} \
+    "${CMAKE_ARGS}" \
 	-DCMAKE_BUILD_TYPE=Release              \
-	-DCMAKE_INSTALL_PREFIX=${PREFIX}        \
-	-DCMAKE_PREFIX_PATH=${PREFIX}           \
+	-DCMAKE_INSTALL_PREFIX="${PREFIX}"      \
+	-DCMAKE_PREFIX_PATH="${PREFIX}"         \
 	-DCMAKE_INSTALL_BINDIR=bin              \
 	-DCMAKE_INSTALL_LIBDIR=lib              \
 	-DCMAKE_INSTALL_INCLUDEDIR=include      \
@@ -19,5 +17,5 @@ cmake -LAH -G "Ninja" \
 	-DFREEGLUT_BUILD_SHARED_LIBS=ON         \
 	..
 
-ninja -j${CPU_COUNT}
+ninja -j"${CPU_COUNT}"
 ninja install

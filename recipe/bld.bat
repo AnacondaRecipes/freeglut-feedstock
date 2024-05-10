@@ -1,3 +1,5 @@
+@echo on
+
 mkdir build && cd build
 cmake -LAH -GNinja                           ^
 	-DCMAKE_BUILD_TYPE=Release               ^

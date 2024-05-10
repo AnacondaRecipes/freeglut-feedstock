@@ -5,7 +5,7 @@ package:
   version: {{ version }}
 
 source:
-  url: http://sourceforge.net/projects/freeglut/files/freeglut/{{ version }}/freeglut-{{ version }}.tar.gz
+  url: https://sourceforge.net/projects/freeglut/files/freeglut/{{ version }}/freeglut-{{ version }}.tar.gz
   sha256: 3c0bcb915d9b180a97edaebd011b7a1de54583a838644dcd42bb0ea0c6f3eaec
   patches:
     - disable_autolink_windows.patch
@@ -69,17 +69,10 @@ test:
     - {{ cdt('mesa-libgl-devel') }}     # [linux and not s390x]
     - {{ cdt('xorg-x11-proto-devel') }}  # [linux]
     - {{ cdt('mesa-dri-drivers') }}  # [linux]
-  commands:
-    # Test Windows includes and libraries.
-    - if not exist %LIBRARY_INC%\\GL\\freeglut.h     exit 1   # [win]
-    - if not exist %LIBRARY_INC%\\GL\\freeglut_ext.h exit 1   # [win]
-    - if not exist %LIBRARY_INC%\\GL\\freeglut_std.h exit 1   # [win]
-    - if not exist %LIBRARY_INC%\\GL\\glut.h         exit 1   # [win]
-    - if not exist %LIBRARY_LIB%\\freeglut.lib       exit 1   # [win]
-    - if not exist %LIBRARY_BIN%\\freeglut.dll       exit 1   # [win]
+  # test commands are moved to run_test.sh and run_test.bat
 
 about:
-  home: http://freeglut.sourceforge.net/
+  home: https://freeglut.sourceforge.net/
   dev_url: https://github.com/freeglut/freeglut
   doc_url: https://freeglut.sourceforge.net/
   license: MIT
