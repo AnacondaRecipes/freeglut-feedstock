@@ -1,3 +1,5 @@
+@echo on
+
 setlocal EnableDelayedExpansion
 
 REM Test Windows includes and libraries.

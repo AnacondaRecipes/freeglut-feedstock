@@ -9,7 +9,7 @@ test -d "${PREFIX}/include/GL"
 test ! -f "${PREFIX}/lib/libglut.a" || exit 1
 test -f "${PREFIX}/lib/libglut.so" || exit 1
 test -f "${PREFIX}/lib/libglut.so.3" || exit 1
-test -f "${PREFIX}/lib/libglut.so.3.11.1" || exit 1
+test -f "${PREFIX}/lib/libglut.so.3.12.0" || exit 1
 test -f "${PREFIX}/lib/pkgconfig/glut.pc" || exit 1
 # Test headers.
 test -f "${PREFIX}/include/GL/freeglut.h" || exit 1
