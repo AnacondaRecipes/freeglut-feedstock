@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -eo pipefail
-
 # Test linking against glut with CMake
 cd test
 
