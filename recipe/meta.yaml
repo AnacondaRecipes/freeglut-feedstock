@@ -13,7 +13,7 @@ source:
 build:
   number: 0
   # mesa-libgl-devel isn't available on s390x
-  skip: true  # [osx or (linux and not s390x)]
+  skip: true  # [osx or (linux and s390x)]
   run_exports:
     # https://abi-laboratory.pro/index.php?view=timeline&l=freeglut
     # very good backwards compatibility
