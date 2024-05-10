@@ -2,6 +2,8 @@
 
 set -euxo pipefail
 
+export LDFLAGS="${LDFLAGS} -Wl,-rpath-link,${PREFIX}/lib"
+
 mkdir build && cd build
 cmake -LAH -G "Ninja" \
     ${CMAKE_ARGS} \

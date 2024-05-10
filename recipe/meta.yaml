@@ -84,6 +84,8 @@ about:
   license_family: MIT
   license_file: COPYING
   summary: A GUI based on OpenGL.
+  description: |
+    Open-source alternative to the OpenGL Utility Toolkit (GLUT) library.
 
 extra:
   recipe-maintainers:
