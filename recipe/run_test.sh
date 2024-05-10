@@ -15,7 +15,6 @@ cd test || exit
 
 cmake -GNinja -DCMAKE_BUILD_TYPE=Release .
 
-ninja -j${CPU_COUNT} -v
-ninja install
+cmake --build . --config Release
 
 ./test
