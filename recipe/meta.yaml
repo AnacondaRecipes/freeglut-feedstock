@@ -9,6 +9,7 @@ source:
   sha256: 3c0bcb915d9b180a97edaebd011b7a1de54583a838644dcd42bb0ea0c6f3eaec
   patches:
     - disable_autolink_windows.patch
+    - 96.patch
 
 build:
   number: 0
@@ -38,8 +39,12 @@ requirements:
     - {{ cdt('xorg-x11-proto-devel') }} # [linux]
     - {{ cdt('libxxf86vm-devel') }}      # [linux]
     - {{ cdt('libdrm-devel') }}          # [linux]
+    - {{ cdt('libxdamage') }}            # [linux]
+    - {{ cdt('libxdamage-devel') }}      # [linux]
   host:
     - libglu 9.0.0                      # [linux and not s390x]
+    - libxcb                             # [linux]
+  run:
     - libxcb                             # [linux]
 
 test:
@@ -52,7 +57,6 @@ test:
     - pkg-config
     - libglu                            # [linux and not s390x]
     - libxcb                             # [linux]
-    - {{ cdt('libxcb') }}               # [linux]
     - {{ cdt('libxi-devel') }}          # [linux]
     - {{ cdt('libx11-devel') }}         # [linux]
     - {{ cdt('libxau-devel') }}         # [linux]
@@ -62,6 +66,9 @@ test:
     - {{ cdt('xorg-x11-proto-devel') }} # [linux]
     - {{ cdt('libxxf86vm-devel') }}      # [linux]
     - {{ cdt('libdrm-devel') }}          # [linux]
+    - {{ cdt('libxdamage') }}            # [linux]
+    - {{ cdt('libxdamage-devel') }}      # [linux]
+    - {{ cdt('libselinux') }}  # [linux]
   commands:
     # Test includes.
     - test -d "${PREFIX}/include/GL"  # [linux]

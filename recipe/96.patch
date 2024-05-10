@@ -1,0 +1,22 @@
+From 77d113e3b05e246fd12cba0640618c216abc06fb Mon Sep 17 00:00:00 2001
+From: Silvio Traversaro <silvio@traversaro.it>
+Date: Tue, 15 Feb 2022 14:42:46 +0100
+Subject: [PATCH] Do not link to libm on Windows
+
+---
+ freeglut/freeglut/CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/freeglut/freeglut/CMakeLists.txt b/freeglut/freeglut/CMakeLists.txt
+index ac8c8df3..afdcfaea 100644
+--- a/freeglut/freeglut/CMakeLists.txt
++++ b/freeglut/freeglut/CMakeLists.txt
+@@ -581,7 +581,7 @@ ADD_DEMO(timer_callback  progs/demos/timer_callback/timer.c)
+ # pkg-config support, to install at $(libdir)/pkgconfig
+ # Define static build dependencies
+ IF(WIN32)
+-  SET(PC_LIBS_PRIVATE "-lopengl32 -lwinmm -lgdi32 -lm")
++  SET(PC_LIBS_PRIVATE "-lopengl32 -lwinmm -lgdi32")
+ ELSEIF(FREEGLUT_GLES)
+   IF(ANDROID)
+     SET(PC_LIBS_PRIVATE "-llog -landroid -lGLESv2 -lGLESv1_CM -lEGL -lm")
