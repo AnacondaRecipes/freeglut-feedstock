@@ -23,7 +23,10 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - cmake
-    - make                               # [linux]
+    - ninja-base
+    - pkg-config
+    - m2-patch                          # [win]
+    - patch                             # [not win]
     - {{ cdt('libxcb') }}               # [linux]
     - {{ cdt('libxi-devel') }}          # [linux]
     - {{ cdt('libx11-devel') }}         # [linux]
@@ -34,7 +37,7 @@ requirements:
     - {{ cdt('xorg-x11-proto-devel') }} # [linux]
     - {{ cdt('libxxf86vm-devel') }}      # [linux]
   host:
-    - libglu                             # [linux]
+    - libglu 9.0.0                      # [linux]
 
 test:
   files:
@@ -43,7 +46,7 @@ test:
   requires:
     - {{ compiler('c') }}
     - cmake
-    - ninja
+    - ninja-base
     - libglu                             # [linux]
     - {{ cdt('libxcb') }}               # [linux]
     - {{ cdt('libxi-devel') }}          # [linux]
@@ -74,6 +77,8 @@ test:
 
 about:
   home: http://freeglut.sourceforge.net/
+  dev_url: https://github.com/freeglut/freeglut
+  doc_url: https://freeglut.sourceforge.net/
   license: MIT
   license_family: MIT
   license_file: COPYING

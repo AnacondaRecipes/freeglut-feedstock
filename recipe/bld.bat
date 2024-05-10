@@ -1,6 +1,6 @@
 mkdir build && cd build
 cmake ^
-	-G "NMake Makefiles"                     ^
+	-GNinja                                  ^
 	-DCMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX%  ^
 	-DCMAKE_INSTALL_BINDIR=%LIBRARY_BIN%     ^
 	-DCMAKE_INSTALL_LIBDIR=%LIBRARY_LIB%     ^
@@ -12,7 +12,13 @@ cmake ^
 	-DFREEGLUT_BUILD_SHARED_LIBS=ON          ^
 	..
 
-cmake --build . --config Release --target INSTALL
+ninja -j%CPU_COUNT%
+IF %ERRORLEVEL% NEQ 0 exit 1
+REM Skip Docker and SSHD tests (see above) because they involve external dependencies
+ctest --output-on-failure
+IF %ERRORLEVEL% NEQ 0 exit 1
+ninja install
+IF %ERRORLEVEL% NEQ 0 exit 1
 
 mklink /h %LIBRARY_BIN%\freeglut.dll %LIBRARY_BIN%\glut.dll
 mklink /h %LIBRARY_LIB%\freeglut.lib %LIBRARY_LIB%\glut.lib
