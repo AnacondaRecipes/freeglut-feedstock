@@ -40,6 +40,7 @@ requirements:
     - {{ cdt('libdrm-devel') }}          # [linux]
   host:
     - libglu 9.0.0                      # [linux and not s390x]
+    - libxcb                             # [linux]
 
 test:
   files:
@@ -50,6 +51,7 @@ test:
     - ninja-base
     - pkg-config
     - libglu                            # [linux and not s390x]
+    - libxcb                             # [linux]
     - {{ cdt('libxcb') }}               # [linux]
     - {{ cdt('libxi-devel') }}          # [linux]
     - {{ cdt('libx11-devel') }}         # [linux]
