@@ -12,7 +12,8 @@ source:
 
 build:
   number: 0
-  skip: true  # [osx]
+  # mesa-libgl-devel isn't available on s390x
+  skip: true  # [osx or (linux and not s390x)]
   run_exports:
     # https://abi-laboratory.pro/index.php?view=timeline&l=freeglut
     # very good backwards compatibility
@@ -36,6 +37,7 @@ requirements:
     - {{ cdt('mesa-libgl-devel') }}     # [linux and not s390x]
     - {{ cdt('xorg-x11-proto-devel') }} # [linux]
     - {{ cdt('libxxf86vm-devel') }}      # [linux]
+    - {{ cdt('libdrm-devel') }}          # [linux]
   host:
     - libglu 9.0.0                      # [linux and not s390x]
 
@@ -57,6 +59,7 @@ test:
     - {{ cdt('mesa-libgl-devel') }}     # [linux and not s390x]
     - {{ cdt('xorg-x11-proto-devel') }} # [linux]
     - {{ cdt('libxxf86vm-devel') }}      # [linux]
+    - {{ cdt('libdrm-devel') }}          # [linux]
   commands:
     # Test includes.
     - test -d "${PREFIX}/include/GL"  # [linux]

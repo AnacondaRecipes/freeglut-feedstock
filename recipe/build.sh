@@ -6,7 +6,7 @@ export PKG_CONFIG_PATH="${BUILD_PREFIX}/bin/pkg-config:${BUILD_PREFIX}/lib/pkgco
 export PKG_CONFIG_EXECUTABLE=${PREFIX}/bin/pkg-config
 
 mkdir build && cd build
-cmake -G "Ninja" \
+cmake -LAH -G "Ninja" \
     ${CMAKE_ARGS} \
 	-DCMAKE_INSTALL_PREFIX=$PREFIX          \
 	-DCMAKE_INSTALL_LIBDIR=$PREFIX/lib      \
