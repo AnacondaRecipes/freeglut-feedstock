@@ -9,5 +9,5 @@ if errorlevel 1 exit 1
 cmake --build . --config Release
 if errorlevel 1 exit 1
 
-.\test.exe 
+.\test.exe
 if errorlevel 1 exit 1

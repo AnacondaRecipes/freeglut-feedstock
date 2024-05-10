@@ -37,17 +37,17 @@ requirements:
     - {{ cdt('xorg-x11-proto-devel') }} # [linux]
     - {{ cdt('libxxf86vm-devel') }}      # [linux]
   host:
-    - libglu 9.0.0                      # [linux]
+    - libglu 9.0.0                      # [linux and not s390x]
 
 test:
   files:
     - test
-
   requires:
     - {{ compiler('c') }}
     - cmake
     - ninja-base
-    - libglu                             # [linux]
+    - pkg-config
+    - libglu                            # [linux and not s390x]
     - {{ cdt('libxcb') }}               # [linux]
     - {{ cdt('libxi-devel') }}          # [linux]
     - {{ cdt('libx11-devel') }}         # [linux]
@@ -57,7 +57,6 @@ test:
     - {{ cdt('mesa-libgl-devel') }}     # [linux and not s390x]
     - {{ cdt('xorg-x11-proto-devel') }} # [linux]
     - {{ cdt('libxxf86vm-devel') }}      # [linux]
-
   commands:
     # Test includes.
     - test -d "${PREFIX}/include/GL"  # [linux]
