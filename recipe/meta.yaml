@@ -42,9 +42,10 @@ requirements:
     - {{ cdt('libxdamage-devel') }}      # [linux]
   host:
     - libglu 9.0.0                      # [linux and not s390x]
-    - libxcb                             # [linux]
+    - libxcb 1.15                        # [linux]
   run:
     - libxcb                             # [linux]
+    - {{ pin_compatible('libglu') }}    # [linux]
 
 test:
   files:
@@ -53,8 +54,6 @@ test:
     - {{ compiler('c') }}
     - cmake
     - ninja-base
-    - libglu                            # [linux and not s390x]
-    - libxcb                             # [linux]
     - {{ cdt('libxi-devel') }}          # [linux]
     - {{ cdt('libx11-devel') }}         # [linux]
     - {{ cdt('libxau-devel') }}         # [linux]
