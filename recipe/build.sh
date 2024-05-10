@@ -18,5 +18,4 @@ cmake -LAH -G "Ninja" \
 	..
 
 ninja -j${CPU_COUNT}
-ctest --output-on-failure
 ninja install

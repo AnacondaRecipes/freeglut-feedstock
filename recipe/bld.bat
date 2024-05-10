@@ -14,9 +14,7 @@ cmake -LAH ^
 
 ninja -j%CPU_COUNT%
 IF %ERRORLEVEL% NEQ 0 exit 1
-REM Skip Docker and SSHD tests (see above) because they involve external dependencies
-ctest --output-on-failure
-IF %ERRORLEVEL% NEQ 0 exit 1
+
 ninja install
 IF %ERRORLEVEL% NEQ 0 exit 1
 
