@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -eo pipefail
+set -euxo pipefail
 
 mkdir build && cd build
 cmake -LAH -G "Ninja" \

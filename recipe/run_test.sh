@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -euxo pipefail
+
 # Test includes.
 test -d "${PREFIX}/include/GL"
 
