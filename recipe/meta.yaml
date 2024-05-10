@@ -40,7 +40,7 @@ requirements:
     - {{ cdt('libxi-devel') }}          # [linux]
     - {{ cdt('libxxf86vm-devel') }}      # [linux]
     - {{ cdt('mesa-libgl-devel') }}     # [linux and not s390x]
-    - {{ cdt('mesa-libglapi-devel') }}     # [linux]
+    - {{ cdt('mesa-libglapi') }}     # [linux]
     - {{ cdt('xorg-x11-proto-devel') }} # [linux]
   host:
     - libglu 9.0.0                      # [linux and not s390x]
@@ -67,7 +67,7 @@ test:
     - {{ cdt('libxi-devel') }}          # [linux]
     - {{ cdt('libxxf86vm-devel') }}      # [linux]
     - {{ cdt('mesa-libgl-devel') }}     # [linux and not s390x]
-    - {{ cdt('mesa-libglapi-devel') }}     # [linux]
+    - {{ cdt('mesa-libglapi') }}     # [linux]
     - {{ cdt('xorg-x11-proto-devel') }}  # [linux]
   commands:
     # Test Windows includes and libraries.
