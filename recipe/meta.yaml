@@ -25,28 +25,31 @@ requirements:
     - cmake
     - ninja-base
     - pkg-config
-    - m2-patch                          # [win]
-    - patch                             # [not win]
+    # The relevant CDT packages to build freeglut https://github.com/freeglut/freeglut/blob/63c0e78d84ecbfcf8accd8bac04404427899053b/README.cmake#L42,
+    # also check recipe/yum_requirements.txt.
+    - {{ cdt('libx11-devel') }}          # [linux]
+    - {{ cdt('mesa-libgl-devel') }}      # [linux and not s390x]
+    - {{ cdt('xorg-x11-proto-devel') }}  # [linux]
+    - {{ cdt('libxi-devel') }}           # [linux]
+    # The CTDs needed by $PREFIX/bin/../x86_64-conda-linux-gnu/sysroot/usr/lib64/libGL.so.1:
     - {{ cdt('libdrm-devel') }}          # [linux]
     - {{ cdt('libselinux') }}            # [linux]
-    - {{ cdt('libx11-devel') }}         # [linux]
-    - {{ cdt('libxau-devel') }}         # [linux]
-    - {{ cdt('libxcb') }}               # [linux]
     - {{ cdt('libxdamage-devel') }}      # [linux]
     - {{ cdt('libxdamage') }}            # [linux]
-    - {{ cdt('libxext-devel') }}        # [linux]
-    - {{ cdt('libxfixes-devel') }}      # [linux]
-    - {{ cdt('libxi-devel') }}          # [linux]
+    - {{ cdt('libxau-devel') }}          # [linux]
+    - {{ cdt('libxcb') }}                # [linux]
+    - {{ cdt('libxext-devel') }}         # [linux]
+    - {{ cdt('libxfixes-devel') }}       # [linux]
     - {{ cdt('libxxf86vm-devel') }}      # [linux]
-    - {{ cdt('mesa-libgl-devel') }}     # [linux and not s390x]
-    - {{ cdt('xorg-x11-proto-devel') }} # [linux]
-    - {{ cdt('mesa-dri-drivers') }}  # [linux]
+    # mesa-dri-drivers is needed for libGL.so.1 to fix missing libglapi.so.0
+    - {{ cdt('mesa-dri-drivers') }}      # [linux]
+
   host:
-    - libglu 9.0.0                      # [linux and not s390x]
+    - libglu 9.0.0                       # [linux and not s390x]
     - libxcb 1.15                        # [linux]
   run:
     - libxcb                             # [linux]
-    - {{ pin_compatible('libglu') }}    # [linux]
+    - {{ pin_compatible('libglu') }}     # [linux]
 
 test:
   files:
@@ -56,18 +59,19 @@ test:
     - cmake
     - ninja-base
     - {{ cdt('libdrm-devel') }}          # [linux]
-    - {{ cdt('libselinux') }}  # [linux]
-    - {{ cdt('libx11-devel') }}         # [linux]
-    - {{ cdt('libxau-devel') }}         # [linux]
+    - {{ cdt('libselinux') }}            # [linux]
+    - {{ cdt('libx11-devel') }}          # [linux]
+    - {{ cdt('libxau-devel') }}          # [linux]
+    - {{ cdt('libxcb') }}                # [linux]
     - {{ cdt('libxdamage-devel') }}      # [linux]
     - {{ cdt('libxdamage') }}            # [linux]
-    - {{ cdt('libxext-devel') }}        # [linux]
-    - {{ cdt('libxfixes-devel') }}      # [linux]
-    - {{ cdt('libxi-devel') }}          # [linux]
+    - {{ cdt('libxext-devel') }}         # [linux]
+    - {{ cdt('libxfixes-devel') }}       # [linux]
+    - {{ cdt('libxi-devel') }}           # [linux]
     - {{ cdt('libxxf86vm-devel') }}      # [linux]
-    - {{ cdt('mesa-libgl-devel') }}     # [linux and not s390x]
+    - {{ cdt('mesa-dri-drivers') }}      # [linux]
+    - {{ cdt('mesa-libgl-devel') }}      # [linux and not s390x]
     - {{ cdt('xorg-x11-proto-devel') }}  # [linux]
-    - {{ cdt('mesa-dri-drivers') }}  # [linux]
   # test commands are moved to run_test.sh and run_test.bat
 
 about:
