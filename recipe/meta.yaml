@@ -8,6 +8,8 @@ package:
 source:
   url: https://github.com/freeglut/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz
   sha256: 3c0bcb915d9b180a97edaebd011b7a1de54583a838644dcd42bb0ea0c6f3eaec
+  patches:                            # [win]
+    - disable_autolink_windows.patch  # [win]
 
 build:
   number: 0
@@ -25,6 +27,7 @@ requirements:
     - cmake
     - ninja-base
     - pkg-config
+    - m2-patch  # [win]
     # The relevant CDT packages to build freeglut https://github.com/freeglut/freeglut/blob/63c0e78d84ecbfcf8accd8bac04404427899053b/README.cmake#L42,
     # also check recipe/yum_requirements.txt.
     - {{ cdt('libx11-devel') }}          # [linux]
