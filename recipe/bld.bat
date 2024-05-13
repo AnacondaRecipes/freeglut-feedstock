@@ -1,7 +1,10 @@
 @echo on
 
 mkdir build && cd build
-cmake -LAH -GNinja                           ^
+
+REM Cmake generator can cause linking error on Windows but ninja is fine,
+REM see https://github.com/conda-forge/freeglut-feedstock/issues/26#issuecomment-769383551
+cmake -GNinja                           ^
 	-DCMAKE_BUILD_TYPE=Release               ^
 	-DCMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX%  ^
 	-DCMAKE_INSTALL_BINDIR=%LIBRARY_BIN%     ^
