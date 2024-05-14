@@ -1,18 +1,21 @@
 #!/bin/bash
-set -x
 
-declare -a CMAKE_PLATFORM_FLAGS
-if [[ ${HOST} =~ .*linux.* ]]; then
-    CMAKE_PLATFORM_FLAGS+=(-DCMAKE_TOOLCHAIN_FILE="${RECIPE_DIR}/cross-linux.cmake")
-fi
+set -euxo pipefail
 
 mkdir build && cd build
-cmake \
-	-DCMAKE_INSTALL_PREFIX=$PREFIX          \
-	-DCMAKE_INSTALL_LIBDIR=$PREFIX/lib      \
+cmake -G "Ninja" \
+    ${CMAKE_ARGS} \
 	-DCMAKE_BUILD_TYPE=Release              \
-        ${CMAKE_PLATFORM_FLAGS[@]}              \
+	-DCMAKE_INSTALL_PREFIX=${PREFIX}        \
+	-DCMAKE_PREFIX_PATH=${PREFIX}           \
+	-DCMAKE_INSTALL_BINDIR=bin              \
+	-DCMAKE_INSTALL_LIBDIR=lib              \
+	-DCMAKE_INSTALL_INCLUDEDIR=include      \
+	-DFREEGLUT_REPLACE_GLUT=ON              \
 	-DFREEGLUT_BUILD_DEMOS=OFF              \
+	-DFREEGLUT_BUILD_STATIC_LIBS=OFF        \
+	-DFREEGLUT_BUILD_SHARED_LIBS=ON         \
 	..
-make
-make install
+
+ninja -j${CPU_COUNT}
+ninja install
