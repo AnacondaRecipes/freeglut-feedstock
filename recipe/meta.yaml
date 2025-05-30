@@ -30,19 +30,11 @@ requirements:
 
   host:
     # The relevant packages to build freeglut https://github.com/freeglut/freeglut/blob/63c0e78d84ecbfcf8accd8bac04404427899053b/README.cmake#L42
-    - libglu 9.0.3                       # [linux]
-    - libxcb 1.17                        # [linux]
     - xorg-libx11                        # [linux]
     - libgl-devel                        # [linux]
-    - xorg-xorgproto                     # [linux]
     - xorg-libxi                         # [linux]
-    # The packages needed by OpenGL/Mesa libraries:
-    - mesalib                            # [linux]
-    - xorg-libxdamage                    # [linux]
-    - xorg-libxau                        # [linux]
-    - xorg-libxext                       # [linux]
-    - xorg-libxfixes                     # [linux]
     - xorg-libxxf86vm                    # [linux]
+    - xorg-libxrandr                     # [linux]
 
 test:
   files:
@@ -52,18 +44,12 @@ test:
     - cmake
     - ninja-base
     - pkg-config                         # [linux]
-    # Mesa and OpenGL dependencies needed for testing
-    - mesalib                            # [linux]
+    # Dependencies needed for testing
     - xorg-libx11                        # [linux]
-    - xorg-libxau                        # [linux]
-    - libxcb                             # [linux]
-    - xorg-libxdamage                    # [linux]
-    - xorg-libxext                       # [linux]
-    - xorg-libxfixes                     # [linux]
+    - libgl-devel                        # [linux]
     - xorg-libxi                         # [linux]
     - xorg-libxxf86vm                    # [linux]
-    - libgl-devel                        # [linux]
-    - xorg-xorgproto                     # [linux]
+    - xorg-libxrandr                     # [linux]
   # test commands are moved to run_test.sh and run_test.bat
 
 about:
