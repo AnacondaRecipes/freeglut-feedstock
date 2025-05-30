@@ -30,7 +30,7 @@ requirements:
 
   host:
     # The relevant packages to build freeglut https://github.com/freeglut/freeglut/blob/63c0e78d84ecbfcf8accd8bac04404427899053b/README.cmake#L42
-    - libglu 9.0.3                       # [linux and not s390x]
+    - libglu 9.0.3                       # [linux]
     - libxcb 1.17                        # [linux]
     - xorg-libx11                        # [linux]
     - libgl-devel                        # [linux]
