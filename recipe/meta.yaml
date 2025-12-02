@@ -1,18 +1,18 @@
 {% set name = "freeglut" %}
-{% set version = "3.4.0" %}
+{% set version = "3.8.0" %}
 
 package:
   name: {{ name }}
   version: {{ version }}
 
 source:
-  url: https://github.com/freeglut/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 3c0bcb915d9b180a97edaebd011b7a1de54583a838644dcd42bb0ea0c6f3eaec
+  url: https://github.com/{{ name }}/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz
+  sha256: bc3d5ab1439769f53ce648657227d6f2f6de84d429cb1dbe0e98e0a2e61c4c49
   patches:                            # [win]
     - disable_autolink_windows.patch  # [win]
 
 build:
-  number: 1
+  number: 0
   skip: true  # [osx]
   run_exports:
     # https://abi-laboratory.pro/index.php?view=timeline&l=freeglut
@@ -21,13 +21,12 @@ build:
 
 requirements:
   build:
+    - {{ stdlib('c') }}
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - cmake
     - ninja-base
     - pkg-config
-    - m2-patch  # [win]
-
   host:
     # The relevant packages to build freeglut https://github.com/freeglut/freeglut/blob/63c0e78d84ecbfcf8accd8bac04404427899053b/README.cmake#L42
     - libglu 9.0.3                       # [linux]
@@ -47,7 +46,7 @@ test:
     - ninja-base
     - pkg-config                         # [linux]
     # Dependencies needed for testing
-    - libglu                             # [linux and not s390x]
+    - libglu                             # [linux]
     - libxcb                             # [linux]
     - xorg-libx11                        # [linux]
     - libgl-devel                        # [linux]
@@ -57,15 +56,15 @@ test:
   # test commands are moved to run_test.sh and run_test.bat
 
 about:
-  home: https://freeglut.sourceforge.net/
-  dev_url: https://github.com/freeglut/freeglut
-  doc_url: https://freeglut.sourceforge.net/
+  home: https://freeglut.sourceforge.net
   license: MIT
   license_family: MIT
   license_file: COPYING
   summary: A GUI based on OpenGL.
   description: |
     Open-source alternative to the OpenGL Utility Toolkit (GLUT) library.
+  dev_url: https://github.com/freeglut/freeglut
+  doc_url: https://freeglut.sourceforge.net
 
 extra:
   recipe-maintainers:
