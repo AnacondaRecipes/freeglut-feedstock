@@ -1,4 +1,4 @@
-Subject: Fix FREEGLUT_LIB_PRAGMAS by disabling it otherwise it will require non-exsting freeglutd.lib
+Subject: Fix FREEGLUT_LIB_PRAGMAS by disabling it otherwise it will require non-exsting freeglutd.lib 
 
 ---
 diff --git a/include/GL/freeglut_std.h b/include/GL/freeglut_std.h
