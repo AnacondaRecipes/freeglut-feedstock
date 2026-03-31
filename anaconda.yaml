@@ -1,4 +1,5 @@
 anaconda_config_version: 1
 upstream_sources:
-  - github:
-      identifier: freeglut/freeglut
+  - webpage:
+      url: http://prdownloads.sourceforge.net/freeglut/freeglut-{}.tar.gz?download
+      regex: (?:.*)freeglut-(.*)\.tar\.gz
